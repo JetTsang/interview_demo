@@ -4,10 +4,10 @@
         <div class="storage-counter-view-container">
             <div class="counter" :class="setPosition(item)" v-for="item in imgListOnshow" :key="item.index"  >
                 <div class="counter-img-wrapper">
-                    <img   :src="item.real"/>
+                    <img   :src="item.contral"/>
                 </div>
                 <div class="counter-img-wrapper">
-                    <img   :src="item.contral"/>
+                    <img   :src="item.real"/>
                     <span>{{item.index}}</span>
                 </div>
             </div>
@@ -107,16 +107,19 @@ const uniModel = (key)=>{
 }
 
 </script>
-<script>
-// import StorageCounter from '../components/StorageCounter.vue'
-export default {
-    components:[]
-}
-</script>
 
 <style scoped lang='less'>
 @itemHeight:520px;
 @itemWidth:276px;
+.horizon(@height,@width){
+    width: (@height / 2);
+    height: (@width / 2);
+    margin-right: 32px;
+    .counter-img-wrapper {
+        width: 50%;
+        height: 90%;
+    }
+}
 .storage-counter-view-wrapper {
     padding-left: 16px;
     position: relative;
@@ -162,23 +165,12 @@ export default {
                 flex-direction: column-reverse;
             }
             &.left {
-                // flex-direction: column-reverse;
-                width: @itemHeight;
-                height: @itemWidth;
+                .horizon(@itemHeight,@itemWidth);
                 flex-direction: row-reverse;
-                .counter-img-wrapper {
-                    width: 50%;
-                    height: 100%;
-                }
             }
             &.right {
-                width: @itemHeight;
-                height: @itemWidth;
+                .horizon(@itemHeight,@itemWidth);
                 flex-direction: row;
-                .counter-img-wrapper {
-                    width: 50%;
-                    height: 100%;
-                }
             }
             .counter-img-wrapper {
                 height: 50%;
