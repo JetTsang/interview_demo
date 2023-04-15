@@ -2,7 +2,18 @@
 
     <div class="storage-counter-view-wrapper">
         <div class="storage-counter-view-container">
-            <div class="counter" :class="setPosition(item)" v-for="item in imgListOnshow" :key="item.index"  >
+            <div class="counter" :class="setPosition(item)" v-for="item in imgListOnshow.slice(0,4)" :key="item.index"  >
+                <div class="counter-img-wrapper">
+                    <img   :src="item.contral"/>
+                </div>
+                <div class="counter-img-wrapper">
+                    <img   :src="item.real"/>
+                    <span>{{item.index}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="storage-counter-view-container">
+            <div class="counter" :class="setPosition(item)" v-for="item in imgListOnshow.slice(4)" :key="item.index"  >
                 <div class="counter-img-wrapper">
                     <img   :src="item.contral"/>
                 </div>
@@ -123,6 +134,8 @@ const uniModel = (key)=>{
 .storage-counter-view-wrapper {
     padding-left: 16px;
     position: relative;
+    display: flex;
+    flex-direction: column;
     .controll-container {
         position: absolute;
         right: 0;
@@ -149,7 +162,6 @@ const uniModel = (key)=>{
     }
     .storage-counter-view-container {
         display: flex;
-        flex-wrap: wrap;
         .counter {
             height: @itemHeight;
             width: @itemWidth;
